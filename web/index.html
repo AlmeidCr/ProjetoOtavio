@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: antiquewhite;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        main{
+            display: flex;
+            flex-direction: row;
+            width: max-content;
+            justify-content: center;
+        }
+        .buttons{
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            margin-right: 5vw;
+            justify-content: space-between;
+        }
+        button{
+            background-color: #42e7d7;
+            width: 200px;
+            padding: 5px;
+            border: none;
+            border-radius: 7px;
+            box-shadow: 0px 0px 0.5em #2b9288;
+        }
+        button:hover{
+            margin-left: 7px;
+            cursor: pointer;
+            background-color: #4affed;
+        }
+        button:active{
+            transform: scale(0.98);
+        }
+        .display{
+            display: var(--display);
+            flex-direction: var(--flex);
+            justify-content: var(--justify);
+            align-items: var(--aling);
+            background-color: aliceblue;
+            align-self: center;
+            width: 950px;
+            height: 550px;
+            border: solid #000000;
+            border-radius: 7px;
+        }
+        .block_1{
+            background-color: #0000ff;
+            width: 180px;
+            height: var(--blue);
+            margin: 5px;
+            border-radius: 7px;
+            box-shadow: 0 0 0.5em #0000ff;
+        }
+        .block_2{
+            background-color: #ff0000;
+            width: 200px;
+            height: var(--red);
+            margin: 5px;
+            border-radius: 7px;
+            box-shadow: 0 0 0.5em #ff0000;
+        }
+        .block_3{
+            background-color: #008000;
+            width: 150px;
+            height: var(--green);
+            margin: 5px;
+            border-radius: 7px;
+            box-shadow: 0 0 0.5em #008000;
+        }
+        :root{
+            --display: ;
+        }
+        :root{
+            --flex: ;
+        }
+        :root{
+            --justify: ;
+        }
+        :root{
+            --aling: ;
+        }
+        :root{
+            --blue: 150px;
+        }
+        :root{
+            --red: 140px;
+        }
+        :root{
+            --green: 170px;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto HTML</title>
+</head>
+<body>
+    <main>
+        <div class="buttons">
+            <button id="none">Nenhum</button>
+            <button id="flex">display: flex;</button>
+            <button id="row">flex-direction: row;</button>
+            <button id="row_r">flex-direction: row-reverse;</button>
+            <button id="column">flex-direction: column;</button>
+            <button id="column_r">flex-direction: column-reverse;</button>
+            <button id="j_flex_start">justify-content: flex-start;</button>
+            <button id="j_flex_end">justify-content: flex-end;</button>
+            <button id="j_center">justify-content: center;</button>
+            <button id="j_s_between">justify-content: space-between;</button>
+            <button id="j_s_around">justify-content: space-around;</button>
+            <button id="j_s_evenly">justify-content: space-evenly;</button>
+            <button id="a_flex_start">aling-items: flex-start;</button>
+            <button id="a_flex_end">aling-items: flex-end;</button>
+            <button id="a_center">aling-items: center;</button>
+            <button id="a_baseline">aling-items: baseline;</button>
+            <button id="a_stretch">aling-items: stretch;</button>
+        </div>
+        <div id="display_id" class="display">
+            <div class="block_1"></div>
+            <div class="block_2"></div>
+            <div class="block_3"></div>
+        </div>
+    </main>
+    <script>
+        var none = document.getElementById("none")
+        var flex = document.getElementById("flex");
+        var row = document.getElementById("row");
+        var row_r= document.getElementById("row_r");
+        var column = document.getElementById("column");
+        var column_r = document.getElementById("column_r");
+        var j_flex_start = document.getElementById("j_flex_start");
+        var j_flex_end = document.getElementById("j_flex_end");
+        var j_center = document.getElementById("j_center");
+        var j_s_between = document.getElementById("j_s_between");
+        var j_s_around = document.getElementById("j_s_around");
+        var j_s_evenly = document.getElementById("j_s_evenly");
+        var a_flex_start = document.getElementById("a_flex_start");
+        var a_flex_end = document.getElementById("a_flex_end");
+        var a_center = document.getElementById("a_center");
+        var a_baseline = document.getElementById("a_baseline");
+        var a_stretch = document.getElementById("a_stretch");
+
+        none.addEventListener("click", noneFunction);
+        flex.addEventListener("click", flexFunction);
+        row.addEventListener("click", rowFunction);
+        row_r.addEventListener("click", row_rFunction);
+        column.addEventListener("click", columnFunction);
+        column_r.addEventListener("click", column_rFunction);
+        j_flex_start.addEventListener("click", j_flex_startFunction);
+        j_flex_end.addEventListener("click", j_flex_endFunction);
+        j_center.addEventListener("click", j_centerFunction);
+        j_s_between.addEventListener("click", j_s_betweenFunction);
+        j_s_around.addEventListener("click", j_s_aroundFunction);
+        j_s_evenly.addEventListener("click", j_s_evenlyFunction);
+        a_flex_start.addEventListener("click", a_flex_startFunction);
+        a_flex_end.addEventListener("click", a_flex_endFunction);
+        a_center.addEventListener("click", a_centerFunction);
+        a_baseline.addEventListener("click", a_baselineFunction);
+        a_stretch.addEventListener("click", a_stretchFunction);
+
+        function noneFunction() {
+            var display_id = document.getElementById("display_id")
+            display_id.style.setProperty("--display", "")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function flexFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function rowFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "row")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function row_rFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "row-reverse")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function columnFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "column")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function column_rFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "column-reverse")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function j_flex_startFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "flex-start")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function j_flex_endFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "flex-end")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function j_centerFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "center")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function j_s_betweenFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "space-between")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function j_s_aroundFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "space-around")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function j_s_evenlyFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "space-evenly")
+            display_id.style.setProperty("--aling", "")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function a_flex_startFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "flex-start")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function a_flex_endFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "flex-end")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function a_centerFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "center")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function a_baselineFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "baseline")
+            display_id.style.setProperty("--blue", "150px")
+            display_id.style.setProperty("--red", "140px")
+            display_id.style.setProperty("--green", "170px")
+        }
+        function a_stretchFunction() {
+            display_id.style.setProperty("--display", "flex")
+            display_id.style.setProperty("--flex", "")
+            display_id.style.setProperty("--justify", "")
+            display_id.style.setProperty("--aling", "stretch")
+            display_id.style.setProperty("--blue", " ")
+            display_id.style.setProperty("--red", " ")
+            display_id.style.setProperty("--green", " ")
+        }
+        
+    </script>
+</body>
+</html>
